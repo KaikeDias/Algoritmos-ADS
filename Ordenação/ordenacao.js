@@ -1,7 +1,19 @@
 import {input} from './io_utils.js'
+import {novo_vetor} from './vetor_utils.js'
 
 function main(){
-    const vetor = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48]
+    const tamanho = Number(input('Tamanho: '))
+    const vetor = novo_vetor(tamanho)
+
+    console.log('-----Intervalo-----')
+    const valor_inicial = Number(input('Valor inicial: '))
+    const valor_final = Number(input('Valor final: '))
+
+    for(let i = 0; i < vetor.length; i++){
+        vetor[i] = numero_aleatorio(valor_inicial,valor_final)
+    }
+
+
     console.log('-----ANTES-----')
     console.log(vetor)
 
@@ -17,6 +29,12 @@ function main(){
     }
     console.log('-----DEPOIS-----')
     console.log(vetor)
+}
+
+function numero_aleatorio(valor_inicial,valor_final){
+    const numero = Math.random() * (valor_final - valor_inicial)
+
+    return Math.trunc(numero) + valor_inicial
 }
 
 main()
