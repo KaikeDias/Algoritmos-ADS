@@ -17,18 +17,33 @@ function main(){
     console.log('-----ANTES-----')
     console.log(vetor)
 
-    let aux
-    for(let cont = 0; cont < 15; cont++){
-        for(let i = 0; i < 15; i++){
-            if(vetor[i] > vetor[i+1]){
+    
+    console.log('-----DEPOIS-----')
+
+    const vetor_ordenado = ordenar_bubble(vetor)
+    console.log(vetor)
+}
+
+function ordenar_bubble(vetor){
+    const tamanho = vetor.length 
+    let ordenar = 0
+    let aux 
+    let j = 0
+
+    while(ordenar === 0){
+        ordenar = 1
+        for(let i = 0; i < tamanho - j; i++){
+            if(vetor[i] < vetor[i-1]){
                 aux = vetor[i]
-                vetor[i] = vetor[i+1]
-                vetor[i+1] = aux
+                vetor[i] = vetor [i-1]
+                vetor[i-1] = aux
+                ordenar = 0
             }
         }
+        j++
     }
-    console.log('-----DEPOIS-----')
-    console.log(vetor)
+    
+    return vetor
 }
 
 function numero_aleatorio(valor_inicial,valor_final){

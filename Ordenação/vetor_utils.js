@@ -60,27 +60,6 @@ export function juntar_vetores(vetor_a,vetor_b){
     return vetor_c
 }
 
-export function ordenar_vetor(vetor){
-    let aux
-    const vetor_crescente = novo_vetor(vetor.length)
-
-    for(let i = 0; i < vetor.length; i++){
-        for(let j = i+1; j < vetor.length; j++){
-            if(vetor[i] > vetor[j]){
-                aux = vetor[i]
-                vetor[i] = vetor[j]
-                vetor[j] = aux
-            }
-        }
-    }
-
-    for(let i = 0; i < vetor.length; i++){
-        vetor_crescente[i] = vetor[i]
-    }
-
-    return vetor_crescente
-}
-
 export function fibonacci(vetor){
     const vetor_fibonacci = novo_vetor(vetor.length)
 
@@ -101,3 +80,69 @@ export function vetor_quadrado(vetor){
     return quadrado
 }
 
+export function soma_elementos_positivos(vetor){
+    let soma = 0
+
+    for(let elemento of vetor){
+        if(elemento > 0){
+            soma += elemento
+        }
+    }
+
+    return soma
+}
+
+export function media_elementos(vetor){
+    let soma = 0
+
+    for(let elemento of vetor){
+        soma += elemento
+    }
+
+    const media = soma / vetor.length
+
+    return media
+}
+
+export function ordenar_vetor(vetor){
+    let ordenar = 0
+    let j 
+    while(ordenar === 0){
+        ordenar = 1
+        for(let i in vetor){
+            if(vetor[i] < vetor[i-1]){
+                j = vetor[i]
+                vetor[i] = vetor [i-1]
+                vetor[i-1] = j
+                ordenar = 0
+            }
+        }
+    }
+    
+    return vetor
+}
+
+export function mediana_vetor(vetor){
+    let meio 
+    let mediana
+
+    if(vetor.length % 2 === 0){
+        meio = vetor.length/2
+        mediana = (vetor[meio] + vetor[meio-1])/2
+    }else{
+        meio = (vetor.length-1)/2 + 1
+        mediana = vetor[meio]
+    }
+
+    return mediana
+}
+
+
+export function push(vetor,elemento){
+    let novo_vetor = novo_vetor(vetor.length+1)
+
+    novo_vetor = vetor
+    novo_vetor[novo_vetor.length-1] = elemento
+    
+    return novo_vetor
+}
