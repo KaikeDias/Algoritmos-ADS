@@ -136,3 +136,13 @@ export function mediana_vetor(vetor){
 
     return mediana
 }
+
+
+export function push(vetor,elemento){
+    let novo_vetor = novo_vetor(vetor.length+1)
+
+    novo_vetor = vetor
+    novo_vetor[novo_vetor.length-1] = elemento
+    
+    return novo_vetor
+}
