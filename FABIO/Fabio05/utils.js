@@ -11,3 +11,5 @@ export function eh_multiplo(n1,n2){
         return true
     }
 }
+
+export const dobrar = valor => valor*2

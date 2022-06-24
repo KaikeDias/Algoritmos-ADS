@@ -13,11 +13,9 @@ export function new_matriz(qtd_linhas, qtd_colunas){
 export const show_matriz = (matriz) => console.table(matriz)
 
 export function preencher_matriz(matriz,valor_padrao){
-    const linhas = matriz[0].length
-    const colunas = matriz.length
 
-    for(let i = 0; i < linhas; i++){
-        for(let j = 0; j < colunas; j++){
+    for(let i = 0; i < matriz.length; i++){
+        for(let j = 0; j < matriz[i].length; j++){
             matriz[i][j] = valor_padrao || numero_aleatorio()
         }
     }
@@ -40,15 +38,13 @@ export function transpor_matriz(matriz, N){
 }
 
 export function pos_maior_menor_matriz(matriz){
-    const linhas = matriz[0].length
-    const colunas = matriz.length
     let linha_maior = 0
     let coluna_maior = 0
     let linha_menor = 0
     let coluna_menor = 0
 
-    for(let i = 0; i < linhas; i++){
-        for(let j = 0; j < colunas; j++){
+    for(let i = 0; i < matriz.length; i++){
+        for(let j = 0; j < matriz[i].length; j++){
             if(matriz[i][j] > matriz[linha_maior][coluna_maior]){
                 linha_maior = i
                 coluna_maior = j
@@ -117,4 +113,16 @@ export function soma_positivos_negativos_matriz(matriz){
     }
 
     return [positivos,negativos]
+}
+
+export function map_matriz(matriz,qtd_linhas,qtd_colunas, funcao){
+    const nova_matriz = new_matriz(qtd_linhas,qtd_colunas) 
+
+    for(let i = 0; i < matriz.length; i++){
+        for(let j = 0; j < matriz[i].length; j++){
+            nova_matriz[i][j] = funcao(matriz[i][j])
+        }
+    }
+
+    return nova_matriz
 }

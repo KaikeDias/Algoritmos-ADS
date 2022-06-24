@@ -20,11 +20,9 @@ function main(){
 
 function eh_simetrica(matriz){
     let simetrica = true
-    const linhas = matriz[0].length
-    const colunas = matriz.length
 
-    for(let i = 0; i < linhas; i++){
-        for(let j = 0; j < colunas; j++){
+    for(let i = 0; i < matriz.length; i++){
+        for(let j = 0; j < matriz[i].length; j++){
             if(matriz[i][j] !== matriz[j][i]){
                 simetrica = false
             }
