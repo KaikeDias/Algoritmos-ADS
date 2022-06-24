@@ -146,3 +146,13 @@ export function push(vetor,elemento){
     
     return novo_vetor
 }
+
+export function map_vetor(vetor, funcao){
+    let novoVetor = novo_vetor(vetor.length)
+
+    for(let i = 0; i < vetor.length; i++){
+        novoVetor[i] = funcao(vetor[i])
+    }
+
+    return novoVetor
+}

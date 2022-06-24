@@ -8,7 +8,3 @@ export function print(mensagem, ...optionalParams){
     console.log(mensagem, ...optionalParams)
 }
 
-export function eh_par(valor){
-    return valor % 2 === 0
-
-}
