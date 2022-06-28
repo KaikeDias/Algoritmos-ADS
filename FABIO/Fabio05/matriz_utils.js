@@ -126,3 +126,18 @@ export function map_matriz(matriz,qtd_linhas,qtd_colunas, funcao){
 
     return nova_matriz
 }
+
+export function determinante_ordem_2(matriz){
+    return (matriz[0][0] * matriz[1][1]) - (matriz[0][1] * matriz[1][0]) 
+}
+
+export function determinante_ordem_3(matriz){
+    //dividi o calculo em 3 partes
+    const primeira_parte = (matriz[0][0] * matriz[1][1] * matriz[2][2]) + (matriz[0][1] * matriz[1][2] * matriz[2][0]) + (matriz[0][2] * matriz[1][0] * matriz[2][1])
+    
+    const segunda_parte = (matriz[0][2] * matriz[1][1] * matriz[2][0]) + (matriz[0][0] * matriz[1][2] * matriz[2][1]) + (matriz[0][1] * matriz[1][0] * matriz[2][2])
+    
+    const determinante = primeira_parte - segunda_parte
+
+    return determinante
+}
