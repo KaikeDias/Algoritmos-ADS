@@ -8,40 +8,44 @@ function main(){
     let index = 0
     let matriz
     let ordem
+    let matriz_preenchida
+    let matriz_formatada
+    let tam_maior
     
     while(lines[index] !== 0){
         //const ordem = Number(input('Ordem: '))
         ordem = lines[index]
         matriz = new_matriz(ordem,ordem)
-        matriz = preencher_matriz(matriz,ordem)
-        matriz = formatar_matriz(matriz)
+        matriz_preenchida = preencher_matriz(matriz,ordem)
+        tam_maior = get_tam_maior(matriz)
+        matriz_formatada = formatar_matriz(matriz_preenchida,tam_maior)
 
-        for(let linha of matriz){
-            console.log(`${linha.join('')}`)
-        }
-        console.log('')
+        mostrar_matriz(matriz_formatada)
         
         index++
     }
 
 }
 
-function formatar_matriz(matriz){
+function mostrar_matriz(matriz){
+    for(let linha of matriz){
+        console.log(linha.join(' '))
+    }
+    console.log('')
+}
+
+function formatar_matriz(matriz,tam_maior){
     let elemento 
+    let matriz_formatada = new_matriz(matriz.length,matriz.length)
 
     for(let i = 0; i < matriz.length; i++){
         for(let j = 0; j < matriz[i].length; j++){
-            if(j === 0){
-                elemento = `${matriz[i][j]}`
-                matriz[i][j] = get_espaco(3 - elemento.length) + elemento
-            }else{
-                elemento = `${matriz[i][j]}`
-                matriz[i][j] = get_espaco(4 - elemento.length) + elemento
-            }
+            elemento = `${matriz[i][j]}`
+            matriz_formatada[i][j] = get_espaco(tam_maior - elemento.length) + elemento
         }
     }
 
-    return matriz
+    return matriz_formatada
 }
 
 function get_espaco(numero) {
@@ -71,6 +75,20 @@ function preencher_matriz(matriz,ordem){
     }
 
     return matriz
+}
+
+function get_tam_maior(matriz){
+    let maior = 0
+
+    for(let i = 0; i < matriz.length; i++){
+        for(let j = 0; j < matriz[i].length; j++){
+            if(String(matriz[i][j]).length > maior){
+                maior = String(matriz[i][j]).length
+            }
+        }
+    }
+
+    return maior
 }
 
 function new_matriz(qtd_linhas, qtd_colunas){

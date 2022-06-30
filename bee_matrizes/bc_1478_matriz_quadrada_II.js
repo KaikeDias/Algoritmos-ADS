@@ -1,7 +1,7 @@
 // import {input} from './io_utils.js'
-// import { new_matriz } from './matriz_utils.js'
+// import { new_matriz, show_matriz } from './matriz_utils.js'
 import fs from 'fs'
-var input = fs.readFileSync('matriz_quadrada_I.txt', 'utf8');
+var input = fs.readFileSync('matriz_quadrada_II.txt', 'utf8');
 var lines = input.split('\n').map(Number);
 
 function main(){
@@ -11,7 +11,7 @@ function main(){
         //ordem = Number(input('Ordem: '))
         ordem = lines[index]
         matriz = new_matriz(ordem,ordem)
-        matriz_preenchida = preencher_matriz_funil(matriz,ordem)
+        matriz_preenchida = preencher_matriz(matriz,ordem)
         matriz_formatada = formatar_matriz(matriz_preenchida)
 
         mostrar_matriz(matriz_formatada)
@@ -19,7 +19,6 @@ function main(){
     }
 
 }
-
 function mostrar_matriz(matriz){
     for(let linha of matriz){
         console.log(linha.join(''))
@@ -46,30 +45,27 @@ function formatar_matriz(matriz){
     return matriz_formatada
 }
 
-function preencher_matriz_funil(matriz,ordem){
-    for(let externo = 0, interno = ordem-1; externo < ordem; externo++,interno--){
-        for(let i = 0; i < ordem; i++){
-            for(let j = 0; j < ordem; j++){
-                if(i === externo || i === interno || j === externo || j === interno){
-                    if(campo_vazio(matriz,i,j)){
-                        matriz[i][j] = externo + 1
-                    }
-                }
+
+function preencher_matriz(matriz){
+    let valor_referencia
+
+    for(let i = 0; i < matriz.length; i++){
+        matriz[i][0] = i+1
+    }
+
+    for(let i = 0; i < matriz.length; i++){
+        valor_referencia = 1
+        for(let j = 1; j < matriz[i].length; j++){
+            if(matriz[i][j-1] > valor_referencia){
+                matriz[i][j] = matriz[i][j-1] - 1
+            }else{
+                valor_referencia++
+                matriz[i][j] = valor_referencia
             }
         }
     }
-    
+
     return matriz
-}
-
-function get_espaco(numero) {
-    let espaco = ''
-
-    for(let i = 0; i < numero; i++) {
-        espaco += ' '
-    }
-
-    return espaco
 }
 
 function new_matriz(qtd_linhas, qtd_colunas){
@@ -82,6 +78,14 @@ function new_matriz(qtd_linhas, qtd_colunas){
     return matriz
 }
 
-const campo_vazio = (matriz,i,j) => matriz[i][j] === undefined
+function get_espaco(numero) {
+    let espaco = ''
+
+    for(let i = 0; i < numero; i++) {
+        espaco += ' '
+    }
+
+    return espaco
+}
 
 main()
