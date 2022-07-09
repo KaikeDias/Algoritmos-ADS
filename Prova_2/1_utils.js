@@ -1,5 +1,3 @@
-//Não fiz a função de entrada de numeros positivos ou negativos pois nao achei necessario ja que nao foi necessario
-
 import prompt from 'prompt-sync'
 import fs from 'fs'
 
